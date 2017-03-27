@@ -1,0 +1,42 @@
+<%- model_class = Ticket -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:subject) %>:</strong></dt>
+  <dd><%= @ticket.subject %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:platform) %>:</strong></dt>
+  <dd><%= @ticket.platform %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:application) %>:</strong></dt>
+  <dd><%= @ticket.application %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+  <dd><%= @ticket.description %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:member1) %>:</strong></dt>
+  <dd><%= @ticket.member1 %>&nbsp;</dd>
+  <dt><strong><%= model_class.human_attribute_name(:member2) %>:</strong></dt>
+  <dd><%= @ticket.member2 %>&nbsp;</dd>
+  <dt><strong><%= model_class.human_attribute_name(:error_message) %>:</strong></dt>
+  <dd><%= @ticket.error_message %>&nbsp;</dd>
+  <dt><strong><%= model_class.human_attribute_name(:priority) %>:</strong></dt>
+  <dd><%= @ticket.priority %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:problem_url) %>:</strong></dt>
+  <dd><%= @ticket.problem_url %>&nbsp;</dd>
+  <dt><strong><%= model_class.human_attribute_name(:web_browser) %>:</strong></dt>
+  <dd><%= @ticket.web_browser %>&nbsp;</dd>
+  <dt><strong><%= "Consultation ID" %>:</strong></dt>
+  <dd><%= @ticket.consultation_id %>&nbsp;</dd>
+  <% unless  @ticket.image_url.blank? %>
+    <dt><strong><%= model_class.human_attribute_name(:screen_shot) %>:</strong></dt>
+    <dd><%= image_tag @ticket.image_url.to_s %>&nbsp;</dd>
+  <% end %>
+  <dt><strong><%= model_class.human_attribute_name(:requester_name) %>:</strong></dt>
+  <dd><%= @ticket.from_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:requester_email) %>:</strong></dt>
+  <dd><%= @ticket.from_email %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              new_ticket_path, :class => 'btn'  %>
+</div>

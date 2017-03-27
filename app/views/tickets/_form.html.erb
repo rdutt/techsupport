@@ -1,0 +1,21 @@
+<%= simple_form_for @ticket, :html => { :class => 'form-horizontal', :multipart => true } do |f| %>
+  
+  <%= f.input :platform, collection: Ticket::PLATFORMS, as: :radio_buttons %>
+  <%= f.input :application, collection: Ticket::APPS %>
+  <%= f.input :subject, placeholder: "One-line summary of problem", input_html: { class: "field span5"} %>
+  <%= f.input :description, label: "Description", placeholder: "Describe your problem in detail. Put member names in the Member1 or Member2 fields below, not in this description. Please also include the steps to reproduce the problem.", input_html: { class: "field span5", rows: 6 }  %> 
+  <%= f.input :member1, label: "Impacted Member1", placeholder: "Member ID or Full name and DOB", input_html: { class: "field span3"}  %>
+  <%= f.input :member2, label: "Impacted Member2",  placeholder: "Member ID or Full name and DOB", input_html: { class: "field span3"}  %>
+  <%= f.input :problem_url, label: "Problem URL",  placeholder: "http:// link where the issue occurred", input_html: { class: "field span3"}  %>
+  <%= f.input :error_message, input_html: { class: "field span5", rows: 2 }, label: "Error message, if any" %>
+  <%= f.input :web_browser, collection: Ticket::WEB_BROWSERS %> 
+  <%= f.label 'Screen shot' %>
+  <%= f.input :image, as: :file, label: false %>
+  <%= f.input :consultation_id, placeholder: "Numeric consult ID if available" %> 
+  <%= f.input :priority, collection: Ticket::PRIORITIES %>
+  <%= f.input :from_name, label: "Your name" %>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+  </div>
+<% end %>

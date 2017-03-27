@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  platform: MyString
+  application: MyString
+  member1: MyString
+  member2: MyString
+  error_message: MyText
+  description: MyText
+  priority: MyString
+  from_email: MyString
+
+two:
+  platform: MyString
+  application: MyString
+  member1: MyString
+  member2: MyString
+  error_message: MyText
+  description: MyText
+  priority: MyString
+  from_email: MyString

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Techsupport</title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+  <![endif]-->
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+    	<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="/tickets/new">Tech. Support</a>
+      <div class="nav-collapse">
+        <ul class="nav navbar-nav navbar-left">
+          <li><%= link_to "New ticket", new_ticket_path %></li>
+          <li><%= link_to "My tickets", tickets_path %></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <% if current_user %>
+            <li><%= link_to current_user.name+" logged in", '#' %></li>
+            <li><%= link_to "Log out", logout_path %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='container'>
+	<% flash.each do |name, msg| %>
+  	<div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+	    <a class="close" data-dismiss="alert">×</a>
+	    <%= msg %>
+  	</div>
+	<% end %>
+
+	<div class="row">
+		<div class="span9"><%= yield %></div>
+		<div class="span3">
+			<% if controller.controller_name == 'tickets' && controller.action_name == 'new' %>
+
+				<h2>How this Works</h2>
+    		Please use this secure form to report an issue with a Web or mobile app.
+    		<p><p>
+    		After you submit this form, you will receive a confirmation email, and the link to the Zen Desk ticket. 
+    		You can reply to the email or click on the Zen Desk link to communicate further with the Tech Support 
+    		team about this issue.
+    		<p><p>
+    		Thank you.
+    		<p><p>
+    		<i>The Tech Support Team</i> 		
+      <% end %>
+      <p><p>
+    	<%= image_tag 'your_logo.png' %>			
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

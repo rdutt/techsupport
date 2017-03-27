@@ -1,0 +1,31 @@
+<%- model_class = Ticket -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:subject) %></th>
+      <th><%= model_class.human_attribute_name(:requester) %></th>
+      <th><%= model_class.human_attribute_name(:requested) %></th>
+      <th><%= model_class.human_attribute_name(:priority) %></th>
+      <th><%= model_class.human_attribute_name(:zendesk_ticket) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tickets.each do |ticket| %>
+      <tr>
+        <td><%= link_to ticket.subject, ticket %></td>
+        <td><%= ticket.from_name %></td>
+        <td><%= time_ago_in_words(ticket.created_at) + " ago" %></td>
+        <td><%= ticket.priority %></td>
+        <td><%= link_to ticket.zendesk_ticket_id, "https://teladochelpdesk.zendesk.com/tickets/"+
+          ticket.zendesk_ticket_id.to_s %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_ticket_path,
+            :class => 'btn btn-primary' %>

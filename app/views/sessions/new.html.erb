@@ -1,0 +1,16 @@
+
+<div class="page-header">
+  <h1>Log in</h1>
+  <h4>for Technical Support</h4>
+</div>
+
+<%= form_tag sessions_path do |f| %>
+  <%= label_tag :your_email %>
+  <%= text_field_tag :email, params[:email], placeholder: "you@teladoc.com"  %>
+  <div class="form-actions">
+    <%= submit_tag 'Submit', :class => 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<%= "Not signed up yet?" %>
+<%= link_to 'Sign up', signup_path %>
